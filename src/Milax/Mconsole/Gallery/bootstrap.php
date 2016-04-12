@@ -51,7 +51,9 @@ return [
     ],
     'register' => [
         'middleware' => [],
-        'providers' => [],
+        'providers' => [
+            Milax\Mconsole\Gallery\GalleryServiceProvider::class,
+        ],
         'aliases' => [],
         'bindings' => [],
         'dependencies' => [],
