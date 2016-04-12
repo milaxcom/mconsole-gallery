@@ -3,7 +3,6 @@
 namespace Milax\Mconsole\Gallery;
 
 use Milax\Mconsole\Contracts\ModuleInstaller;
-use Milax\Mconsole\Models\MconsoleOption;
 
 class Installer implements ModuleInstaller
 {
@@ -11,14 +10,16 @@ class Installer implements ModuleInstaller
         [
             'label' => 'gallery.options.index.name',
             'key' => 'gallery_index_count',
-            'value' => '1',
+            'value' => 1,
+            'rules' => ['required', 'integer'],
             'type' => 'text',
             'enabled' => 1,
         ],
         [
             'label' => 'gallery.options.paginate.name',
             'key' => 'gallery_paginate_count',
-            'value' => '12',
+            'value' => 12,
+            'rules' => ['required', 'integer'],
             'type' => 'text',
             'enabled' => 1,
         ],
@@ -26,17 +27,11 @@ class Installer implements ModuleInstaller
     
     public static function install()
     {
-        foreach (self::$options as $option) {
-            if (MconsoleOption::where('key', $option['key'])->count() == 0) {
-                MconsoleOption::create($option);
-            }
-        }
+        app('API')->options->install(self::$options);
     }
     
     public static function uninstall()
     {
-        foreach (self::$options as $option) {
-            MconsoleOption::where('key', $option['key'])->delete();
-        }
+        app('API')->options->uninstall(self::$options);
     }
 }
