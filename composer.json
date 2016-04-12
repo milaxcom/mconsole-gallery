@@ -5,6 +5,10 @@
         {
             "name": "Rudenko Vladimir",
             "email": "rudenko@milax.ru"
+        },
+        {
+            "name": "Eugene Min",
+            "email": "e.min@milax.com"
         }
     ],
     "require": {
