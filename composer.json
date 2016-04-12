@@ -1,0 +1,22 @@
+{
+    "name": "milax/mconsole-gallery",
+    "description": "",
+    "authors": [
+        {
+            "name": "Rudenko Vladimir",
+            "email": "rudenko@milax.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.2.*",
+        "laravelcollective/html": "5.2.*",
+        "milax/cacheable": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Milax\\Mconsole\\Gallery\\": "src/Milax/Mconsole/Gallery/"
+        }
+    },
+    "minimum-stability": "stable"
+}
