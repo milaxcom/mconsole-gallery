@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Milax\Mconsole\Gallery\Models\Gallery;
-use Paginatable;
-use Redirectable;
+use HasPaginator;
+use HasRedirects;
 use HasQueryTraits;
 
 /**
@@ -15,7 +15,7 @@ use HasQueryTraits;
  */
 class GalleryController extends Controller
 {
-    use HasQueryTraits, Redirectable, Paginatable;
+    use HasQueryTraits, HasRedirects, HasPaginator;
 
     protected $redirectTo = '/mconsole/gallery';
     protected $model = 'Milax\Mconsole\Gallery\Models\Gallery';
