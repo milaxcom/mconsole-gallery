@@ -67,10 +67,10 @@ return [
     'init' => function () {
         // Register in search engine
         app('API')->search->register(function ($text) {
-            return \Milax\Mconsole\Gallery\Models\Gallery::where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($gallery) {
+            return \Milax\Mconsole\Gallery\Models\Gallery::select('id', 'title', 'slug')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($gallery) {
                 return [
-                    'type' => 'gallery',
-                    'text' => sprintf('%s', $gallery->slug),
+                    'title' => sprintf('%s', $gallery->title),
+                    'description' => sprintf('/%s', $gallery->slug),
                     'link' => sprintf('/mconsole/gallery/%s/edit', $gallery->id),
                 ];
             });
