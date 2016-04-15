@@ -2,21 +2,20 @@
 
 namespace Milax\Mconsole\Gallery\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
+use Milax;
 use App\Http\Controllers\Controller;
+use Milax\Mconsole\Gallery\Http\Requests\GalleryRequest;
 use Milax\Mconsole\Gallery\Models\Gallery;
-use HasPaginator;
-use HasRedirects;
-use HasQueryTraits;
+use Milax\Mconsole\Models\MconsoleUploadPreset;
+use Milax\Mconsole\Models\Language;
 
 /**
  * Gallery module controller file
  */
 class GalleryController extends Controller
 {
-    use HasQueryTraits, HasRedirects, HasPaginator;
-
+    use \HasQueryTraits, \HasRedirects, \HasPaginator;
+    
     protected $redirectTo = '/mconsole/gallery';
     protected $model = 'Milax\Mconsole\Gallery\Models\Gallery';
     
@@ -44,7 +43,10 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('mconsole::gallery.form');
+        return view('mconsole::gallery.form', [
+            'presets' => MconsoleUploadPreset::all(),
+            'languages' => Language::all(),
+        ]);
     }
 
     /**
@@ -53,9 +55,15 @@ class GalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GalleryRequest $request)
     {
-        Gallery::create($request->all());
+        $gallery = Gallery::create($request->all());
+        
+        if (!is_null($tags = $request->input('tags'))) {
+            $gallery->tags()->sync($tags);
+        }
+        
+        $this->handleImages($gallery);
     }
 
     /**
@@ -79,6 +87,8 @@ class GalleryController extends Controller
     {
         return view('mconsole::gallery.form', [
             'item' => Gallery::find($id),
+            'presets' => MconsoleUploadPreset::all(),
+            'languages' => Language::all(),
         ]);
     }
 
@@ -89,9 +99,19 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GalleryRequest $request, $id)
     {
-        Gallery::find($id)->update($request->all());
+        $gallery = Gallery::find($id);
+        
+        if (!is_null($tags = $request->input('tags'))) {
+            $gallery->tags()->sync($tags);
+        } else {
+            $gallery->tags()->detach();
+        }
+        
+        $this->handleImages($gallery);
+        
+        $gallery->update($request->all());
     }
 
     /**
@@ -103,5 +123,29 @@ class GalleryController extends Controller
     public function destroy($id)
     {
         Gallery::destroy($id);
+    }
+    
+    /**
+     * Handle images upload
+     *
+     * @param Milax\Mconsole\Pages\Models\Page $page [Page object]
+     * @return void
+     */
+    protected function handleImages($object)
+    {
+        // Images processing
+        app('API')->images->handle(function ($images) use (&$object) {
+            app('API')->images->attach([
+                'group' => 'gallery',
+                'images' => $images,
+                'related' => $object,
+            ]);
+            app('API')->images->attach([
+                'group' => 'cover',
+                'images' => $images,
+                'related' => $object,
+                'unique' => true,
+            ]);
+        });
     }
 }

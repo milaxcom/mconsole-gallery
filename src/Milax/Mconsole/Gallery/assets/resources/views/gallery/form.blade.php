@@ -10,8 +10,16 @@
     <div class="row">
     	<div class="col-lg-7 col-md-6">
             <div class="portlet light">
+                @if (isset($item))
+                    @include('mconsole::partials.note', [
+                        'title' => trans('mconsole::gallery.form.info.title'),
+                        'text' => trans('mconsole::gallery.form.info.text'),
+                    ])
+                @endif
+                
                 @include('mconsole::partials.portlet-title', [
                     'title' => trans('mconsole::gallery.form.main'),
+                    'fullscreen' => true,
                 ])
                 <div class="portlet-body form">
         			<div class="form-body">
@@ -43,21 +51,30 @@
                     </div>
                 </div>
                 <div class="portlet-body form">
-                    @include('mconsole::forms.select', [
-                        'label' => trans('mconsole::gallery.form.preset.name'),
-                        'name' => 'preset_id',
-                        'options' => [
-                            '1' => trans('mconsole::gallery.form.preset.true'),
-                            '0' => trans('mconsole::gallery.form.preset.false'),
-                        ],
-                    ])
                     @include('mconsole::partials.upload', [
                         'multiple' => true,
                         'group' => 'gallery',
-                        'preset' => 'pages',
+                        'preset' => 'gallery',
                         'id' => isset($item) ? $item->id : null,
                         'model' => 'Milax\Mconsole\Pages\Models\Gallery',
                     ])
+                </div>
+            </div>
+            
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::forms.tags.label') }}</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    @if (isset($item))
+                        @include('mconsole::forms.tags', [
+                            'tags' => $item->tags,
+                        ])
+                    @else
+                        @include('mconsole::forms.tags')
+                    @endif
                 </div>
             </div>
             
