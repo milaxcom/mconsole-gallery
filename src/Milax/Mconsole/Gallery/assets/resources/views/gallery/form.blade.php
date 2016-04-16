@@ -12,6 +12,7 @@
             <div class="portlet light">
                 @if (isset($item))
                     @include('mconsole::partials.note', [
+                        'back' => '/mconsole/gallery',
                         'title' => trans('mconsole::gallery.form.info.title'),
                         'text' => trans('mconsole::gallery.form.info.text'),
                     ])
