@@ -86,14 +86,7 @@
                     </div>
                 </div>
                 <div class="portlet-body form">
-                    @include('mconsole::forms.select', [
-                        'label' => trans('mconsole::news.form.enabled.name'),
-                        'name' => 'enabled',
-                        'options' => [
-                            '1' => trans('mconsole::news.form.enabled.true'),
-                            '0' => trans('mconsole::news.form.enabled.false'),
-                        ],
-                    ])
+                    @include('mconsole::forms.state')
                 </div>
             </div>
         </div>
