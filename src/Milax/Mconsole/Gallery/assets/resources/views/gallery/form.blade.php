@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="portlet-body form">
-                    @include('mconsole::partials.upload', [
+                    @include('mconsole::forms.upload.images', [
                         'multiple' => true,
                         'group' => 'gallery',
                         'preset' => 'gallery',
