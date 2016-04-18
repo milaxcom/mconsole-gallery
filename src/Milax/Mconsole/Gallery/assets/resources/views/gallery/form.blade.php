@@ -10,19 +10,21 @@
     <div class="row">
     	<div class="col-lg-7 col-md-6">
             <div class="portlet light">
-                @if (isset($item))
-                    @include('mconsole::partials.note', [
-                        'back' => '/mconsole/gallery',
-                        'title' => trans('mconsole::gallery.form.info.title'),
-                        'text' => trans('mconsole::gallery.form.info.text'),
-                    ])
-                @endif
-                
                 @include('mconsole::partials.portlet-title', [
                     'title' => trans('mconsole::gallery.form.main'),
+                    'back' => true,
                     'fullscreen' => true,
                 ])
                 <div class="portlet-body form">
+                    
+                    @if (isset($item))
+                        @include('mconsole::partials.note', [
+                            'back' => '/mconsole/gallery',
+                            'title' => trans('mconsole::gallery.form.info.title'),
+                            'text' => trans('mconsole::gallery.form.info.text'),
+                        ])
+                    @endif
+                    
         			<div class="form-body">
         				@include('mconsole::forms.text', [
         					'label' => trans('mconsole::gallery.form.slug'),
@@ -52,10 +54,12 @@
                     </div>
                 </div>
                 <div class="portlet-body form">
-                    @include('mconsole::forms.upload.images', [
+                    @include('mconsole::forms.upload', [
+                        'type' => MX_UPLOADTYPE_IMAGE,
                         'multiple' => true,
                         'group' => 'gallery',
                         'preset' => 'gallery',
+                        'selector' => app('API')->options->get('gallery_show_presets'),
                         'id' => isset($item) ? $item->id : null,
                         'model' => 'Milax\Mconsole\Pages\Models\Gallery',
                     ])
