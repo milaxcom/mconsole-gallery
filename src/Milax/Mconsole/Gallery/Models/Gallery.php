@@ -17,12 +17,28 @@ class Gallery extends Model
      * @param void
      */
     public function setSlugAttribute($value)
-    {    
+    {
         if (strlen($value) == 0) {
             $title = Request::input('title');
             $this->attributes['slug'] = str_slug($title);
         } else {
             $this->attributes['slug'] = str_slug($value);
         }
+    }
+    
+    /**
+     * Automatically delete related data
+     * 
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($object) {
+            $object->uploads->each(function ($upload) {
+                $upload->delete();
+            });
+            $object->tags()->detach();
+        });
     }
 }
