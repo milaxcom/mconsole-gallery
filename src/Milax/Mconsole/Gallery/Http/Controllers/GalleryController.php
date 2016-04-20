@@ -137,18 +137,18 @@ class GalleryController extends Controller
         app('API')->uploads->handle(function ($files) use (&$object) {
             app('API')->uploads->attach([
                 'group' => 'gallery',
-                'images' => $files,
+                'uploads' => $files,
                 'related' => $object,
             ]);
             app('API')->uploads->attach([
                 'group' => 'cover',
-                'images' => $files,
+                'uploads' => $files,
                 'related' => $object,
                 'unique' => true,
             ]);
             app('API')->uploads->attach([
                 'group' => 'files',
-                'images' => $files,
+                'uploads' => $files,
                 'related' => $object,
             ]);
         });
