@@ -9,46 +9,6 @@ return [
     'name' => 'Gallery',
     'identifier' => 'mconsole-gallery',
     'description' => 'mconsole::gallery.module.description',
-    'menu' => [
-        'content' => [
-            'child' => [
-                'gallery_all' => [
-                    'name' => 'All galleries',
-                    'translation' => 'gallery.menu.list.name',
-                    'url' => 'gallery',
-                    'description' => 'gallery.menu.list.description',
-                    'route' => 'mconsole.gallery.index',
-                    'visible' => true,
-                    'enabled' => true,
-                ],
-                'gallery_form' => [
-                    'name' => 'Create gallery',
-                    'translation' => 'gallery.menu.create.name',
-                    'url' => 'pages/create',
-                    'description' => 'gallery.menu.create.description',
-                    'route' => 'mconsole.gallery.create',
-                    'visible' => false,
-                    'enabled' => true,
-                ],
-                'gallery_update' => [
-                    'name' => 'Edit galleries',
-                    'translation' => 'gallery.menu.update.name',
-                    'description' => 'gallery.menu.update.description',
-                    'route' => 'mconsole.gallery.edit',
-                    'visible' => false,
-                    'enabled' => true,
-                ],
-                'gallery_delete' => [
-                    'name' => 'Delete galleries',
-                    'translation' => 'gallery.menu.delete.name',
-                    'description' => 'gallery.menu.delete.description',
-                    'route' => 'mconsole.gallery.destroy',
-                    'visible' => false,
-                    'enabled' => true,
-                ],
-            ],
-        ],
-    ],
     'register' => [
         'middleware' => [],
         'providers' => [
@@ -65,6 +25,41 @@ return [
         Installer::uninstall();
     },
     'init' => function () {
+        app('API')->menu->push('content', 'gallery_all', [
+            'name' => 'All galleries',
+            'translation' => 'gallery.menu.list.name',
+            'url' => 'gallery',
+            'description' => 'gallery.menu.list.description',
+            'route' => 'mconsole.gallery.index',
+            'visible' => true,
+            'enabled' => true,
+        ]);
+        app('API')->menu->push('content', 'gallery_form', [
+            'name' => 'Create gallery',
+            'translation' => 'gallery.menu.create.name',
+            'url' => 'pages/create',
+            'description' => 'gallery.menu.create.description',
+            'route' => 'mconsole.gallery.create',
+            'visible' => false,
+            'enabled' => true,
+        ]);
+        app('API')->menu->push('content', 'gallery_update', [
+            'name' => 'Edit galleries',
+            'translation' => 'gallery.menu.update.name',
+            'description' => 'gallery.menu.update.description',
+            'route' => 'mconsole.gallery.edit',
+            'visible' => false,
+            'enabled' => true,
+        ]);
+        app('API')->menu->push('content', 'gallery_delete', [
+            'name' => 'Delete galleries',
+            'translation' => 'gallery.menu.delete.name',
+            'description' => 'gallery.menu.delete.description',
+            'route' => 'mconsole.gallery.destroy',
+            'visible' => false,
+            'enabled' => true,
+        ]);
+        
         // Register in search engine
         app('API')->search->register(function ($text) {
             return \Milax\Mconsole\Gallery\Models\Gallery::select('id', 'title', 'slug')->where('slug', 'like', sprintf('%%%s%%', $text))->orWhere('title', 'like', sprintf('%%%s%%', $text))->get()->transform(function ($gallery) {
