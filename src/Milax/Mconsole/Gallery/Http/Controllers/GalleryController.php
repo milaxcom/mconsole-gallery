@@ -8,16 +8,25 @@ use Milax\Mconsole\Gallery\Http\Requests\GalleryRequest;
 use Milax\Mconsole\Gallery\Models\Gallery;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
 use Milax\Mconsole\Models\Language;
+use ListRenderer;
 
 /**
  * Gallery module controller file
  */
 class GalleryController extends Controller
 {
-    use \HasQueryTraits, \HasRedirects, \HasPaginator;
+    use \HasRedirects;
     
     protected $redirectTo = '/mconsole/gallery';
     protected $model = 'Milax\Mconsole\Gallery\Models\Gallery';
+    
+    /**
+     * Create new class instance
+     */
+    public function __construct(ListRenderer $renderer)
+    {
+        $this->renderer = $renderer;
+    }
     
     /**
      * Display a listing of the resource.
@@ -26,7 +35,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return $this->setPerPage(20)->run('mconsole::gallery.list', function ($item) {
+        return $this->renderer->setQuery(Gallery::query())->setPerPage(20)->render('gallery/create', function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::gallery.table.updated') => $item->updated_at->format('m.d.Y'),
