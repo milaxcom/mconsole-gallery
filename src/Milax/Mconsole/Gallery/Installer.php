@@ -38,6 +38,7 @@ class Installer implements ModuleInstaller
     
     public static $presets = [
         [
+            'type' => MX_UPLOAD_TYPE_IMAGE,
             'key' => 'gallery',
             'name' => 'Gallery',
             'path' => 'gallery',
