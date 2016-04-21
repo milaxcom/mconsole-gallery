@@ -72,7 +72,7 @@ class GalleryController extends Controller
             $gallery->tags()->sync($tags);
         }
         
-        $this->handleFiles($gallery);
+        $this->handleUploads($gallery);
     }
 
     /**
@@ -118,7 +118,7 @@ class GalleryController extends Controller
             $gallery->tags()->detach();
         }
         
-        $this->handleFiles($gallery);
+        $this->handleUploads($gallery);
         
         $gallery->update($request->all());
     }
@@ -140,24 +140,24 @@ class GalleryController extends Controller
      * @param Milax\Mconsole\Pages\Models\Page $page [Page object]
      * @return void
      */
-    protected function handleFiles($object)
+    protected function handleUploads($object)
     {
         // Images processing
-        app('API')->uploads->handle(function ($files) use (&$object) {
+        app('API')->uploads->handle(function ($uploads) use (&$object) {
             app('API')->uploads->attach([
                 'group' => 'gallery',
-                'uploads' => $files,
+                'uploads' => $uploads,
                 'related' => $object,
             ]);
             app('API')->uploads->attach([
                 'group' => 'cover',
-                'uploads' => $files,
+                'uploads' => $uploads,
                 'related' => $object,
                 'unique' => true,
             ]);
             app('API')->uploads->attach([
                 'group' => 'files',
-                'uploads' => $files,
+                'uploads' => $uploads,
                 'related' => $object,
             ]);
         });
