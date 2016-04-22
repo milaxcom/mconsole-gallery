@@ -2,7 +2,6 @@
 
 namespace Milax\Mconsole\Gallery\Http\Controllers;
 
-use Milax;
 use App\Http\Controllers\Controller;
 use Milax\Mconsole\Gallery\Http\Requests\GalleryRequest;
 use Milax\Mconsole\Gallery\Models\Gallery;

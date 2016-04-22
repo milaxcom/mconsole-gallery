@@ -42,4 +42,17 @@ class GalleryRequest extends Request
                 ];
         }
     }
+    
+    /**
+     * Set custom validator attribute names
+     *
+     * @return Validator
+     */
+    protected function getValidatorInstance()
+    {
+        $validator = parent::getValidatorInstance();
+        $validator->setAttributeNames(trans('mconsole::gallery.form'));
+        
+        return $validator;
+    }
 }
