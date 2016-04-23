@@ -20,8 +20,8 @@
                     @if (isset($item))
                         @include('mconsole::partials.note', [
                             'back' => '/mconsole/gallery',
-                            'title' => trans('mconsole::gallery.form.info.title'),
-                            'text' => trans('mconsole::gallery.form.info.text'),
+                            'title' => trans('mconsole::gallery.info.title'),
+                            'text' => trans('mconsole::gallery.info.text'),
                         ])
                     @endif
                     
