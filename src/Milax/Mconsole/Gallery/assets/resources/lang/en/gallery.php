@@ -22,33 +22,31 @@ return [
     ],
     'table' => [
         'updated' => 'Updated',
-        'slug' => 'Slug',
+        'slug' => 'Address',
         'title' => 'Name',
     ],
     'form' => [
-        'main' => 'Main',
+        'main' => 'Basic data',
         'additional' => 'Additional',
         'gallery' => 'Gallery',
-        'info' => [
-            'title' => 'Wisdom',
-            'text' => 'To use the gallery in the page or news, you can use the Blade of the Directive. Examples: <code>&#64;gallery(\'my-gallery\')</code> or <code>&#64;gallery(1, 2)</code>.',
-        ],
         'slug' => 'Slug',
         'title' => 'Title',
         'description' => 'Description',
-        'preset' => [
-            'name' => 'Upload preset',
-        ],
+        'preset' => 'Upload preset',
+    ],
+    'info' => [
+        'title' => 'Wisdom',
+        'text' => 'To use the gallery in the page or news, you can use the Blade of the Directive. Examples: <code>&#64;gallery(\'my-gallery\')</code> or <code>&#64;gallery(1, 2)</code>.',
     ],
     'options' => [
         'settings' => [
             'group' => 'Gallery',
         ],
         'index' => [
-            'name' => 'Count at index page',
+            'name' => 'Galleries at home',
         ],
         'paginate' => [
-            'name' => 'Count per page',
+            'name' => 'Galleries per page',
         ],
         'presets' => [
             'name' => 'Show upload preset selector',
