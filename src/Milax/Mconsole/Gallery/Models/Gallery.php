@@ -7,7 +7,7 @@ use Request;
 
 class Gallery extends Model
 {
-    use \HasTags;
+    use \HasTags, \HasState;
     
     protected $fillable = ['preset_id', 'slug', 'title', 'description', 'enabled'];
     
