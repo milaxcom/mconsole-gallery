@@ -7,7 +7,8 @@ use Milax\Mconsole\Gallery\Http\Requests\GalleryRequest;
 use Milax\Mconsole\Gallery\Models\Gallery;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
 use Milax\Mconsole\Models\Language;
-use ListRenderer;
+use Milax\Mconsole\Contracts\ListRenderer;
+use Milax\Mconsole\Contracts\FormRenderer;
 
 /**
  * Gallery module controller file
@@ -22,9 +23,10 @@ class GalleryController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $renderer)
+    public function __construct(ListRenderer $list, FormRenderer $form)
     {
-        $this->renderer = $renderer;
+        $this->list = $list;
+        $this->form = $form;
     }
     
     /**
@@ -34,7 +36,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return $this->renderer->setQuery(Gallery::query())->setPerPage(20)->setAddAction('gallery/create')->render(function ($item) {
+        return $this->list->setQuery(Gallery::query())->setPerPage(20)->setAddAction('gallery/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::gallery.table.updated') => $item->updated_at->format('m.d.Y'),
@@ -51,7 +53,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('mconsole::gallery.form', [
+        return $this->form->render('mconsole::gallery.form', [
             'presets' => MconsoleUploadPreset::all(),
             'languages' => Language::all(),
         ]);
@@ -93,7 +95,7 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        return view('mconsole::gallery.form', [
+        return $this->form->render('mconsole::gallery.form', [
             'item' => Gallery::find($id),
             'presets' => MconsoleUploadPreset::all(),
             'languages' => Language::all(),
