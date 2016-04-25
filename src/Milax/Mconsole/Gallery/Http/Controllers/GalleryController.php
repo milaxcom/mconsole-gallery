@@ -36,7 +36,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return $this->list->setQuery(Gallery::query())->setPerPage(20)->setAddAction('gallery/create')->render(function ($item) {
+        return $this->list->setQuery(Gallery::query())->setAddAction('gallery/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::gallery.table.updated') => $item->updated_at->format('m.d.Y'),
