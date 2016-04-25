@@ -96,7 +96,7 @@ class GalleryController extends Controller
     public function edit($id)
     {
         return $this->form->render('mconsole::gallery.form', [
-            'item' => Gallery::find($id),
+            'item' => Gallery::findOrFail($id),
             'presets' => MconsoleUploadPreset::all(),
             'languages' => Language::all(),
         ]);
@@ -111,7 +111,7 @@ class GalleryController extends Controller
      */
     public function update(GalleryRequest $request, $id)
     {
-        $gallery = Gallery::find($id);
+        $gallery = Gallery::findOrFail($id);
         
         if (!is_null($tags = $request->input('tags'))) {
             $gallery->tags()->sync($tags);
