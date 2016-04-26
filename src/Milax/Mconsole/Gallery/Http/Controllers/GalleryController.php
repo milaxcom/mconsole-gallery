@@ -15,7 +15,7 @@ use Milax\Mconsole\Contracts\FormRenderer;
  */
 class GalleryController extends Controller
 {
-    use \HasRedirects;
+    use \HasRedirects, \DoesNotHaveShow;
     
     protected $redirectTo = '/mconsole/gallery';
     protected $model = 'Milax\Mconsole\Gallery\Models\Gallery';
