@@ -69,11 +69,8 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::create($request->all());
         
-        if (!is_null($tags = $request->input('tags'))) {
-            $gallery->tags()->sync($tags);
-        }
-        
         $this->handleUploads($gallery);
+        app('API')->tags->sync($gallery);
     }
 
     /**
@@ -113,13 +110,8 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::findOrFail($id);
         
-        if (!is_null($tags = $request->input('tags'))) {
-            $gallery->tags()->sync($tags);
-        } else {
-            $gallery->tags()->detach();
-        }
-        
         $this->handleUploads($gallery);
+        app('API')->tags->sync($gallery);
         
         $gallery->update($request->all());
     }
