@@ -23,10 +23,11 @@ class GalleryController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form)
+    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
     {
         $this->list = $list;
         $this->form = $form;
+        $this->repository = $repository;
     }
     
     /**
@@ -43,7 +44,7 @@ class GalleryController extends Controller
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
         
-        return $this->list->setQuery(Gallery::query())->setAddAction('gallery/create')->render(function ($item) {
+        return $this->list->setQuery($this->repository->inde())->setAddAction('gallery/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::gallery.table.updated') => $item->updated_at->format('m.d.Y'),
@@ -74,7 +75,7 @@ class GalleryController extends Controller
      */
     public function store(GalleryRequest $request)
     {
-        $gallery = Gallery::create($request->all());
+        $gallery = $this->repository->create($request->all());
         
         $this->handleUploads($gallery);
         app('API')->tags->sync($gallery);
@@ -100,7 +101,7 @@ class GalleryController extends Controller
     public function edit($id)
     {
         return $this->form->render('mconsole::gallery.form', [
-            'item' => Gallery::findOrFail($id),
+            'item' => $this->repository->find($id),
             'presets' => MconsoleUploadPreset::all(),
             'languages' => Language::all(),
         ]);
@@ -115,7 +116,7 @@ class GalleryController extends Controller
      */
     public function update(GalleryRequest $request, $id)
     {
-        $gallery = Gallery::findOrFail($id);
+        $gallery = $this->repository->find($id);
         
         $this->handleUploads($gallery);
         app('API')->tags->sync($gallery);
@@ -131,7 +132,7 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        Gallery::destroy($id);
+        $this->repository->destroy($id);
     }
     
     /**
