@@ -7,15 +7,14 @@
 	<div class="col-lg-7 col-md-6">
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
+                'back' => '/mconsole/gallery',
                 'title' => trans('mconsole::gallery.form.main'),
-                'back' => true,
                 'fullscreen' => true,
             ])
             <div class="portlet-body form">
                 
                 @if (isset($item))
                     @include('mconsole::partials.note', [
-                        'back' => '/mconsole/gallery',
                         'title' => trans('mconsole::gallery.info.title'),
                         'text' => trans('mconsole::gallery.info.text'),
                     ])
