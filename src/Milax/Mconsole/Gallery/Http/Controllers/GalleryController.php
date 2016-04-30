@@ -36,6 +36,13 @@ class GalleryController extends Controller
      */
     public function index()
     {
+        $this->list->setText(trans('mconsole::gallery.form.title'), 'title')
+            ->setText(trans('mconsole::gallery.form.slug'), 'slug')
+            ->setSelect(trans('mconsole::settings.options.enabled'), 'enabled', [
+                '1' => trans('mconsole::settings.options.on'),
+                '0' => trans('mconsole::settings.options.off'),
+            ], true);
+        
         return $this->list->setQuery(Gallery::query())->setAddAction('gallery/create')->render(function ($item) {
             return [
                 '#' => $item->id,
