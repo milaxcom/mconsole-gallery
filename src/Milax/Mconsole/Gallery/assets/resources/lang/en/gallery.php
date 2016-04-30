@@ -2,6 +2,9 @@
 
 
 return [
+    'module' => [
+        'description' => 'Create galleries for grouping images',
+    ],
     'menu' => [
         'list' => [
             'name' => 'Gallery',
