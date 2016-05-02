@@ -25,7 +25,7 @@ return [
         Installer::uninstall();
     },
     'init' => function () {
-        app('API')->menu->push('content', 'gallery_all', [
+        app('API')->menu->push([
             'name' => 'All galleries',
             'translation' => 'gallery.menu.list.name',
             'url' => 'gallery',
@@ -33,8 +33,8 @@ return [
             'route' => 'mconsole.gallery.index',
             'visible' => true,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'gallery_form', [
+        ], 'gallery_all', 'content');
+        app('API')->menu->push([
             'name' => 'Create gallery',
             'translation' => 'gallery.menu.create.name',
             'url' => 'pages/create',
@@ -42,23 +42,23 @@ return [
             'route' => 'mconsole.gallery.create',
             'visible' => false,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'gallery_update', [
+        ], 'gallery_form', 'content');
+        app('API')->menu->push([
             'name' => 'Edit galleries',
             'translation' => 'gallery.menu.update.name',
             'description' => 'gallery.menu.update.description',
             'route' => 'mconsole.gallery.edit',
             'visible' => false,
             'enabled' => true,
-        ]);
-        app('API')->menu->push('content', 'gallery_delete', [
+        ], 'gallery_update', 'content');
+        app('API')->menu->push([
             'name' => 'Delete galleries',
             'translation' => 'gallery.menu.delete.name',
             'description' => 'gallery.menu.delete.description',
             'route' => 'mconsole.gallery.destroy',
             'visible' => false,
             'enabled' => true,
-        ]);
+        ], 'gallery_delete', 'content');
         
         // Register in search engine
         app('API')->search->register(function ($text) {
