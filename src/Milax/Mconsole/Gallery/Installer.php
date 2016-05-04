@@ -4,6 +4,8 @@ namespace Milax\Mconsole\Gallery;
 
 use Milax\Mconsole\Contracts\Modules\ModuleInstaller;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
+use Milax\Mconsole\Gallery\GalleryRepository;
+use Milax\Mconsole\Gallery\Models\Gallery;
 
 class Installer implements ModuleInstaller
 {
@@ -28,15 +30,47 @@ class Installer implements ModuleInstaller
         ],
         [
             'group' => 'gallery.options.settings.group',
+            'label' => 'gallery.options.cover.name',
+            'key' => 'gallery_show_cover',
+            'value' => '0',
+            'type' => 'select',
+            'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+            'enabled' => 1,
+        ],
+        [
+            'group' => 'gallery.options.settings.group',
             'label' => 'gallery.options.presets.name',
             'key' => 'gallery_show_presets',
             'value' => '0',
             'type' => 'select',
             'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+            'enabled' => 1,
         ],
     ];
     
     public static $presets = [
+        [
+            'type' => MX_UPLOAD_TYPE_IMAGE,
+            'key' => 'galleryCover',
+            'name' => 'galleryCover',
+            'path' => 'gallery',
+            'extensions' => ['jpg', 'jpeg', 'png'],
+            'min_width' => 80,
+            'min_height' => 80,
+            'operations' => [
+                [
+                    'operation' => 'resize',
+                    'type' => 'ratio',
+                    'width' => '80',
+                    'height' => '80',
+                ],
+                [
+                    'operation' => 'save',
+                    'path' => 'cover',
+                    'quality' => '',
+                ],
+            ],
+        ],
         [
             'type' => MX_UPLOAD_TYPE_IMAGE,
             'key' => 'gallery',
@@ -82,5 +116,10 @@ class Installer implements ModuleInstaller
     {
         app('API')->options->uninstall(self::$options);
         app('API')->presets->uninstall(self::$presets);
+        
+        $repository = new GalleryRepository(Gallery::class);
+        foreach ($repository->get() as $instance) {
+            $instance->delete();
+        }
     }
 }
