@@ -8,7 +8,7 @@ use Milax\Mconsole\Gallery\Installer;
 return [
     'name' => 'Gallery',
     'identifier' => 'mconsole-gallery',
-    'description' => 'mconsole::gallery.module.description',
+    'description' => 'mconsole::gallery.module',
     'register' => [
         'middleware' => [],
         'providers' => [
@@ -27,7 +27,7 @@ return [
     'init' => function () {
         app('API')->menu->push([
             'name' => 'Galleries',
-            'translation' => 'gallery.menu.list.name',
+            'translation' => 'gallery.menu',
             'url' => 'gallery',
             'visible' => true,
             'enabled' => true,

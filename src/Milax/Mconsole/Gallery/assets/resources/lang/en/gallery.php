@@ -2,27 +2,8 @@
 
 
 return [
-    'module' => [
-        'description' => 'Create galleries for grouping images',
-    ],
-    'menu' => [
-        'list' => [
-            'name' => 'Gallery',
-            'description' => 'Manage galleries',
-        ],
-        'create' => [
-            'name' => 'Add gallery',
-            'description' => 'Add new albums with images',
-        ],
-        'update' => [
-            'name' => 'Edit gallery',
-            'description' => 'Edit gallery',
-        ],
-        'delete' => [
-            'name' => 'Delete gallery',
-            'description' => 'Delete all galleries with nested images',
-        ],
-    ],
+    'module' => 'Create galleries for grouping images',
+    'menu' => 'Gallery',
     'table' => [
         'updated' => 'Updated',
         'slug' => 'Address',
