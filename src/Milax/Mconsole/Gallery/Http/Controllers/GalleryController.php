@@ -9,6 +9,7 @@ use Milax\Mconsole\Models\MconsoleUploadPreset;
 use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
+use Milax\Mconsole\Contracts\Repository;
 
 /**
  * Gallery module controller file
@@ -28,7 +29,6 @@ class GalleryController extends Controller
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
-        #dd($this->repository);
     }
     
     /**
@@ -45,7 +45,7 @@ class GalleryController extends Controller
                 '0' => trans('mconsole::settings.options.off'),
             ], true);
         
-        return $this->list->setQuery($this->repository->inde())->setAddAction('gallery/create')->render(function ($item) {
+        return $this->list->setQuery($this->repository->index())->setAddAction('gallery/create')->render(function ($item) {
             return [
                 '#' => $item->id,
                 trans('mconsole::gallery.table.updated') => $item->updated_at->format('m.d.Y'),
