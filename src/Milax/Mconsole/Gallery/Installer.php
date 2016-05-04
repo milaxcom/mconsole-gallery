@@ -17,6 +17,7 @@ class Installer implements ModuleInstaller
             'value' => 1,
             'rules' => ['required', 'integer'],
             'type' => 'text',
+            'options' => null,
             'enabled' => 1,
         ],
         [
@@ -26,6 +27,7 @@ class Installer implements ModuleInstaller
             'value' => 12,
             'rules' => ['required', 'integer'],
             'type' => 'text',
+            'options' => null,
             'enabled' => 1,
         ],
         [
@@ -33,6 +35,7 @@ class Installer implements ModuleInstaller
             'label' => 'gallery.options.cover.name',
             'key' => 'gallery_show_cover',
             'value' => '0',
+            'rules' => null,
             'type' => 'select',
             'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
             'enabled' => 1,
@@ -42,6 +45,7 @@ class Installer implements ModuleInstaller
             'label' => 'gallery.options.presets.name',
             'key' => 'gallery_show_presets',
             'value' => '0',
+            'rules' => null,
             'type' => 'select',
             'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
             'enabled' => 1,
