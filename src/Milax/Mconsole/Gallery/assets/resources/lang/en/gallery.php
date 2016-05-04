@@ -29,7 +29,7 @@ return [
         'title' => 'Name',
     ],
     'form' => [
-        'main' => 'Basic data',
+        'main' => 'Main',
         'additional' => 'Additional',
         'gallery' => 'Gallery',
         'slug' => 'Slug',
