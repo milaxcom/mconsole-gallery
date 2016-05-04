@@ -3,10 +3,8 @@
 namespace Milax\Mconsole\Gallery;
 
 use Illuminate\Support\ServiceProvider;
-use Milax\Mconsole\Gallery\GalleryRepository;
-use Milax\Mconsole\Gallery\Models\Gallery;
 
-class GalleryServiceProvider extends ServiceProvider
+class Provider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
@@ -28,7 +26,7 @@ class GalleryServiceProvider extends ServiceProvider
         $this->app->when('\Milax\Mconsole\Gallery\Http\Controllers\GalleryController')
             ->needs('\Milax\Mconsole\Contracts\Repository')
             ->give(function () {
-                return new GalleryRepository(Gallery::class);
+                return new \Milax\Mconsole\Gallery\GalleryRepository(\Milax\Mconsole\Gallery\Models\Gallery::class);
             });
     }
 }

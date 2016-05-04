@@ -12,7 +12,7 @@ return [
     'register' => [
         'middleware' => [],
         'providers' => [
-            Milax\Mconsole\Gallery\GalleryServiceProvider::class,
+            Milax\Mconsole\Gallery\Provider::class,
         ],
         'aliases' => [],
         'bindings' => [],
