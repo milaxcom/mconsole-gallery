@@ -36,7 +36,6 @@ return [
         'slug' => 'Slug',
         'title' => 'Title',
         'description' => 'Description',
-        'preset' => 'Upload preset',
     ],
     'info' => [
         'title' => 'Wisdom',

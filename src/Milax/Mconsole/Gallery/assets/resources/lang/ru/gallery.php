@@ -35,7 +35,6 @@ return [
         'slug' => 'Адрес',
         'title' => 'Название',
         'description' => 'Описание (HTML)',
-        'preset' => 'Шаблон загрузки',
     ],
     'info' => [
         'title' => 'Мудрость',
