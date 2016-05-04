@@ -31,6 +31,7 @@ return [
     'form' => [
         'main' => 'Main',
         'additional' => 'Additional',
+        'cover' => 'Cover',
         'gallery' => 'Gallery',
         'slug' => 'Slug',
         'title' => 'Title',
@@ -53,6 +54,9 @@ return [
         ],
         'presets' => [
             'name' => 'Show upload preset selector',
+        ],
+        'cover' => [
+            'name' => 'Use cover',
         ],
     ],
     'acl' => [

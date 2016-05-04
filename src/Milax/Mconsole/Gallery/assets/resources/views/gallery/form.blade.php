@@ -42,6 +42,27 @@
 	</div>
     <div class="col-lg-5 col-md-6">
         
+        @if (app('API')->options->getByKey('gallery_show_cover'))
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-blue sbold uppercase">{{ trans('mconsole::gallery.form.cover') }}</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    @include('mconsole::forms.upload', [
+                        'type' => MX_UPLOAD_TYPE_IMAGE,
+                        'multiple' => false,
+                        'group' => 'cover',
+                        'preset' => 'galleryCover',
+                        'selector' => app('API')->options->getByKey('gallery_show_presets'),
+                        'id' => isset($item) ? $item->id : null,
+                        'model' => 'Milax\Mconsole\Gallery\Models\Gallery',
+                    ])
+                </div>
+            </div>
+        @endif
+        
         <div class="portlet light">
             <div class="portlet-title">
                 <div class="caption">
@@ -56,7 +77,7 @@
                     'preset' => 'gallery',
                     'selector' => app('API')->options->getByKey('gallery_show_presets'),
                     'id' => isset($item) ? $item->id : null,
-                    'model' => 'Milax\Mconsole\Pages\Models\Gallery',
+                    'model' => 'Milax\Mconsole\Gallery\Models\Gallery',
                 ])
             </div>
         </div>
