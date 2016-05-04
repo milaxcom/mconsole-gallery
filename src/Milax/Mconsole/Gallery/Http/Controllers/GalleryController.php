@@ -28,6 +28,7 @@ class GalleryController extends Controller
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
+        #dd($this->repository);
     }
     
     /**

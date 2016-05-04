@@ -55,4 +55,13 @@ return [
             'name' => 'Show upload preset selector',
         ],
     ],
+    'acl' => [
+        'index' => 'Gallery: show list',
+        'create' => 'Gallery: show create form',
+        'store' => 'Gallery: saving',
+        'edit' => 'Gallery: show edit form',
+        'update' => 'Gallery: updating',
+        'show' => 'Gallery: view',
+        'destroy' => 'Gallery: delete',
+    ],
 ];

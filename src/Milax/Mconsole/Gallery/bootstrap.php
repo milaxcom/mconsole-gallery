@@ -26,39 +26,22 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'All galleries',
+            'name' => 'Galleries',
             'translation' => 'gallery.menu.list.name',
             'url' => 'gallery',
-            'description' => 'gallery.menu.list.description',
-            'route' => 'mconsole.gallery.index',
             'visible' => true,
             'enabled' => true,
-        ], 'gallery_all', 'content');
-        app('API')->menu->push([
-            'name' => 'Create gallery',
-            'translation' => 'gallery.menu.create.name',
-            'url' => 'pages/create',
-            'description' => 'gallery.menu.create.description',
-            'route' => 'mconsole.gallery.create',
-            'visible' => false,
-            'enabled' => true,
-        ], 'gallery_form', 'content');
-        app('API')->menu->push([
-            'name' => 'Edit galleries',
-            'translation' => 'gallery.menu.update.name',
-            'description' => 'gallery.menu.update.description',
-            'route' => 'mconsole.gallery.edit',
-            'visible' => false,
-            'enabled' => true,
-        ], 'gallery_update', 'content');
-        app('API')->menu->push([
-            'name' => 'Delete galleries',
-            'translation' => 'gallery.menu.delete.name',
-            'description' => 'gallery.menu.delete.description',
-            'route' => 'mconsole.gallery.destroy',
-            'visible' => false,
-            'enabled' => true,
-        ], 'gallery_delete', 'content');
+        ], 'gallery', 'content');
+        
+        app('API')->acl->register([
+            ['GET', 'gallery', 'gallery.acl.index', 'gallery'],
+            ['GET', 'gallery/create', 'gallery.acl.create'],
+            ['POST', 'gallery', 'gallery.acl.store'],
+            ['GET', 'gallery/{gallery}/edit', 'gallery.acl.edit'],
+            ['PUT', 'gallery/{gallery}', 'gallery.acl.update'],
+            ['GET', 'gallery/{gallery}', 'gallery.acl.show'],
+            ['DELETE', 'gallery/{gallery}', 'gallery.acl.destroy'],
+        ]);
         
         // Register in search engine
         app('API')->search->register(function ($text) {
