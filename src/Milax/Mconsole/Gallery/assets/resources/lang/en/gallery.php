@@ -3,6 +3,9 @@
 
 return [
     'module' => 'Create galleries for grouping images',
+    'quickmenu' => [
+        'create' => 'Add gallery',
+    ],
     'menu' => 'Gallery',
     'table' => [
         'updated' => 'Updated',

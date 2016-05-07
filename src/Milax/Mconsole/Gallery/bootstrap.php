@@ -60,7 +60,7 @@ return [
             $link = new \stdClass();
             $link->icon = 'fa fa-plus';
             $link->color = 'label-success';
-            $link->text = trans('mconsole::gallery.menu.create.name');
+            $link->text = trans('mconsole::gallery.quickmenu.create');
             $link->link = '/mconsole/gallery/create';
             return $link;
         });
