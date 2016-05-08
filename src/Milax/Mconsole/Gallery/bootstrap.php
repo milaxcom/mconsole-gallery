@@ -33,13 +33,13 @@ return [
         ], 'gallery', 'content');
         
         app('API')->acl->register([
-            ['GET', 'gallery', 'gallery.acl.index', 'gallery'],
-            ['GET', 'gallery/create', 'gallery.acl.create'],
-            ['POST', 'gallery', 'gallery.acl.store'],
-            ['GET', 'gallery/{gallery}/edit', 'gallery.acl.edit'],
-            ['PUT', 'gallery/{gallery}', 'gallery.acl.update'],
-            ['GET', 'gallery/{gallery}', 'gallery.acl.show'],
-            ['DELETE', 'gallery/{gallery}', 'gallery.acl.destroy'],
+            ['GET', 'gallery', 'mconsole::gallery.acl.index', 'gallery'],
+            ['GET', 'gallery/create', 'mconsole::gallery.acl.create'],
+            ['POST', 'gallery', 'mconsole::gallery.acl.store'],
+            ['GET', 'gallery/{gallery}/edit', 'mconsole::gallery.acl.edit'],
+            ['PUT', 'gallery/{gallery}', 'mconsole::gallery.acl.update'],
+            ['GET', 'gallery/{gallery}', 'mconsole::gallery.acl.show'],
+            ['DELETE', 'gallery/{gallery}', 'mconsole::gallery.acl.destroy'],
         ]);
         
         // Register in search engine
