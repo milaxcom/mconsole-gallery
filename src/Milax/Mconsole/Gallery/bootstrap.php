@@ -26,7 +26,7 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'gallery.menu',
+            'name' => 'mconsole::gallery.menu',
             'url' => 'gallery',
             'visible' => true,
             'enabled' => true,
