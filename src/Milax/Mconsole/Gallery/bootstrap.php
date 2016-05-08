@@ -26,8 +26,7 @@ return [
     },
     'init' => function () {
         app('API')->menu->push([
-            'name' => 'Galleries',
-            'translation' => 'gallery.menu',
+            'name' => 'gallery.menu',
             'url' => 'gallery',
             'visible' => true,
             'enabled' => true,
