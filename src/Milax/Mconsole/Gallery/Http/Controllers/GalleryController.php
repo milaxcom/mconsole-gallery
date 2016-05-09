@@ -18,7 +18,6 @@ class GalleryController extends Controller
 {
     use \HasRedirects, \DoesNotHaveShow;
     
-    protected $redirectTo = '/mconsole/gallery';
     protected $model = 'Milax\Mconsole\Gallery\Models\Gallery';
     
     /**
@@ -29,6 +28,7 @@ class GalleryController extends Controller
         $this->list = $list;
         $this->form = $form;
         $this->repository = $repository;
+        $this->redirectTo = mconsole_url('gallery');
     }
     
     /**

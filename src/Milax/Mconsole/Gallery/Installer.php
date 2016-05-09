@@ -11,8 +11,8 @@ class Installer implements ModuleInstaller
 {
     public static $options = [
         [
-            'group' => 'gallery.options.settings.group',
-            'label' => 'gallery.options.index.name',
+            'group' => 'mconsole::gallery.options.settings.group',
+            'label' => 'mconsole::gallery.options.index.name',
             'key' => 'gallery_index_count',
             'value' => 1,
             'rules' => ['required', 'integer'],
@@ -21,8 +21,8 @@ class Installer implements ModuleInstaller
             'enabled' => 1,
         ],
         [
-            'group' => 'gallery.options.settings.group',
-            'label' => 'gallery.options.paginate.name',
+            'group' => 'mconsole::gallery.options.settings.group',
+            'label' => 'mconsole::gallery.options.paginate.name',
             'key' => 'gallery_paginate_count',
             'value' => 12,
             'rules' => ['required', 'integer'],
@@ -31,23 +31,23 @@ class Installer implements ModuleInstaller
             'enabled' => 1,
         ],
         [
-            'group' => 'gallery.options.settings.group',
-            'label' => 'gallery.options.cover.name',
+            'group' => 'mconsole::gallery.options.settings.group',
+            'label' => 'mconsole::gallery.options.cover.name',
             'key' => 'gallery_show_cover',
             'value' => '0',
             'rules' => null,
             'type' => 'select',
-            'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+            'options' => ['1' => 'mconsole::settings.options.on', '0' => 'mconsole::settings.options.off'],
             'enabled' => 1,
         ],
         [
-            'group' => 'gallery.options.settings.group',
-            'label' => 'gallery.options.presets.name',
+            'group' => 'mconsole::gallery.options.settings.group',
+            'label' => 'mconsole::gallery.options.presets.name',
             'key' => 'gallery_show_presets',
             'value' => '0',
             'rules' => null,
             'type' => 'select',
-            'options' => ['1' => 'settings.options.on', '0' => 'settings.options.off'],
+            'options' => ['1' => 'mconsole::settings.options.on', '0' => 'mconsole::settings.options.off'],
             'enabled' => 1,
         ],
     ];

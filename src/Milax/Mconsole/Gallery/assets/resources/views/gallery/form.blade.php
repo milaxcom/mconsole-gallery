@@ -1,13 +1,13 @@
 @if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'route' => ['mconsole.gallery.update', $item->id]]) !!}
+    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('gallery/%s', $item->id))]) !!}
 @else
-    {!! Form::open(['method' => 'POST', 'url' => '/mconsole/gallery']) !!}
+    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('gallery')]) !!}
 @endif
 <div class="row">
 	<div class="col-lg-7 col-md-6">
         <div class="portlet light">
             @include('mconsole::partials.portlet-title', [
-                'back' => '/mconsole/gallery',
+                'back' => mconsole_url('gallery'),
                 'title' => trans('mconsole::gallery.form.main'),
                 'fullscreen' => true,
             ])

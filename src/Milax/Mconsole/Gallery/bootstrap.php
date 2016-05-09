@@ -48,7 +48,7 @@ return [
                 return [
                     'title' => sprintf('%s', $result->title),
                     'description' => sprintf('/%s', $result->slug),
-                    'link' => sprintf('/mconsole/gallery/%s/edit', $result->id),
+                    'link' => mconsole_url(sprintf('gallery/%s/edit', $result->id)),
                     'tags' => ['gallery', sprintf('#%s', $result->id)],
                 ];
             });
@@ -58,7 +58,7 @@ return [
         app('API')->quickmenu->register(function () {
             return [
                 'text' => trans('mconsole::gallery.quickmenu.create'),
-                'link' => '/mconsole/gallery/create',
+                'link' => mconsole_url('gallery/create'),
             ];
         });
     },
