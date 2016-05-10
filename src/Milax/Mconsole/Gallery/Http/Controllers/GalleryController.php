@@ -16,7 +16,7 @@ use Milax\Mconsole\Contracts\Repository;
  */
 class GalleryController extends Controller
 {
-    use \HasRedirects, \DoesNotHaveShow;
+    use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = 'Milax\Mconsole\Gallery\Models\Gallery';
     
@@ -29,6 +29,7 @@ class GalleryController extends Controller
         $this->form = $form;
         $this->repository = $repository;
         $this->redirectTo = mconsole_url('gallery');
+        $this->setCaption(trans('mconsole::gallery.menu'));
     }
     
     /**
