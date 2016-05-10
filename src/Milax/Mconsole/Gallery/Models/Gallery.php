@@ -9,7 +9,7 @@ class Gallery extends Model
 {
     use \CascadeDelete, \HasUploads, \HasTags, \HasState;
     
-    protected $fillable = ['preset_id', 'slug', 'title', 'description', 'enabled'];
+    protected $fillable = ['slug', 'title', 'description', 'enabled'];
     
     /**
      * Automatically generate slug from heading if empty, format for url
