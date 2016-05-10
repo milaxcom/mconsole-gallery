@@ -14,10 +14,10 @@ class CreateGalleriesTable extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('preset_id');
-            $table->string('slug');
-            $table->string('title');
-            $table->text('description');
+            $table->integer('preset_id')->nullable();
+            $table->string('slug')->unique();
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
