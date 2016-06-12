@@ -23,12 +23,6 @@ class Provider extends ServiceProvider
      */
     public function register()
     {
-        app('API')->repositories->register('galleries', new \Milax\Mconsole\Gallery\GalleryRepository(\Milax\Mconsole\Gallery\Models\Gallery::class));
-        
-        $this->app->when('\Milax\Mconsole\Gallery\Http\Controllers\GalleryController')
-            ->needs('\Milax\Mconsole\Contracts\Repository')
-            ->give(function () {
-                return app('API')->repositories->galleries;
-            });
+        $this->app->bind('Milax\Mconsole\Gallery\Contracts\Repositories\GalleryRepository', 'Milax\Mconsole\Gallery\Contracts\Repositories\GalleryRepository');
     }
 }
