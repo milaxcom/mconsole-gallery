@@ -48,7 +48,7 @@ class GalleryController extends Controller
         
         return $this->list->setQuery($this->repository->index())->setAddAction('gallery/create')->render(function ($item) {
             return [
-                '#' => $item->id,
+                trans('mconsole::tables.id') => $item->id,
                 trans('mconsole::gallery.table.updated') => $item->updated_at->format('m.d.Y'),
                 trans('mconsole::gallery.table.slug') => $item->slug,
                 trans('mconsole::gallery.table.title') => $item->title,
