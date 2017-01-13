@@ -23,6 +23,6 @@ class Provider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('Milax\Mconsole\Gallery\Contracts\Repositories\GalleryRepository', 'Milax\Mconsole\Gallery\Contracts\Repositories\GalleryRepository');
+        $this->app->bind('Milax\Mconsole\Gallery\Contracts\Repositories\GalleryRepository', 'Milax\Mconsole\Gallery\Repositories\GalleryRepository');
     }
 }

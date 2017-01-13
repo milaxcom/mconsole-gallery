@@ -7,5 +7,5 @@ use Milax\Mconsole\Gallery\Contracts\Repositories\GalleryRepository as Repositor
 
 class GalleryRepository extends EloquentRepository implements Repository
 {
-    public $model = Milax\Mconsole\Gallery\Models\Gallery::class;
+    public $model = \Milax\Mconsole\Gallery\Models\Gallery::class;
 }

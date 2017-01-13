@@ -9,7 +9,7 @@ use Milax\Mconsole\Models\MconsoleUploadPreset;
 use Milax\Mconsole\Models\Language;
 use Milax\Mconsole\Contracts\ListRenderer;
 use Milax\Mconsole\Contracts\FormRenderer;
-use Milax\Mconsole\Contracts\Repository;
+use Milax\Mconsole\Gallery\Contracts\Repositories\GalleryRepository;
 
 /**
  * Gallery module controller file
@@ -23,7 +23,7 @@ class GalleryController extends Controller
     /**
      * Create new class instance
      */
-    public function __construct(ListRenderer $list, FormRenderer $form, Repository $repository)
+    public function __construct(ListRenderer $list, FormRenderer $form, GalleryRepository $repository)
     {
         $this->list = $list;
         $this->form = $form;
