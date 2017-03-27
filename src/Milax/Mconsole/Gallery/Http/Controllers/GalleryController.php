@@ -81,6 +81,8 @@ class GalleryController extends Controller
         
         $this->handleUploads($gallery);
         app('API')->tags->sync($gallery);
+
+        $this->redirect();
     }
 
     /**
@@ -124,6 +126,8 @@ class GalleryController extends Controller
         app('API')->tags->sync($gallery);
         
         $gallery->update($request->all());
+
+        $this->redirect();
     }
 
     /**
@@ -135,6 +139,8 @@ class GalleryController extends Controller
     public function destroy($id)
     {
         $this->repository->destroy($id);
+        
+        $this->redirect();
     }
     
     /**

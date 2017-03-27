@@ -2,10 +2,10 @@
 
 namespace Milax\Mconsole\Gallery\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use Milax\Mconsole\Gallery\Models\Gallery;
 
-class GalleryRequest extends Request
+class GalleryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class GalleryRequest extends Request
     {
         $gallery = Gallery::find($this->gallery);
         
-        switch ($this->method) {
+        switch ($this->method()) {
             case 'PUT':
             case 'UPDATE':
                 return [

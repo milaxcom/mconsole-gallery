@@ -54,7 +54,7 @@ class Installer implements ModuleInstaller
     
     public static $presets = [
         [
-            'type' => MX_UPLOAD_TYPE_IMAGE,
+            'type' => \MconsoleUploadType::Image,
             'key' => 'galleryCover',
             'name' => 'galleryCover',
             'path' => 'gallery',
@@ -76,7 +76,7 @@ class Installer implements ModuleInstaller
             ],
         ],
         [
-            'type' => MX_UPLOAD_TYPE_IMAGE,
+            'type' => \MconsoleUploadType::Image,
             'key' => 'gallery',
             'name' => 'Gallery',
             'path' => 'gallery',
