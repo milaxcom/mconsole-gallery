@@ -4,8 +4,6 @@ namespace Milax\Mconsole\Gallery;
 
 use Milax\Mconsole\Contracts\Modules\ModuleInstaller;
 use Milax\Mconsole\Models\MconsoleUploadPreset;
-use Milax\Mconsole\Gallery\GalleryRepository;
-use Milax\Mconsole\Gallery\Models\Gallery;
 
 class Installer implements ModuleInstaller
 {
@@ -121,7 +119,7 @@ class Installer implements ModuleInstaller
         app('API')->options->uninstall(self::$options);
         app('API')->presets->uninstall(self::$presets);
         
-        $repository = new GalleryRepository(Gallery::class);
+        $repository = app('\Milax\Mconsole\Gallery\Repositories\GalleryRepository');
         foreach ($repository->get() as $instance) {
             $instance->delete();
         }
