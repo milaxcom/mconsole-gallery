@@ -18,6 +18,9 @@ return [
         'bindings' => [],
         'dependencies' => [],
     ],
+    'tags' => [
+        'gallery',
+    ],
     'install' => function () {
         Installer::install();
     },
