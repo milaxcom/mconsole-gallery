@@ -92,9 +92,12 @@
                 @if (isset($item))
                     @include('mconsole::forms.tags', [
                         'tags' => $item->tags,
+                        'categories' => ['gallery'],
                     ])
                 @else
-                    @include('mconsole::forms.tags')
+                    @include('mconsole::forms.tags', [
+                        'categories' => ['gallery'],
+                    ])
                 @endif
             </div>
         </div>
