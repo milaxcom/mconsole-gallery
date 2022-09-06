@@ -4,6 +4,7 @@ namespace Milax\Mconsole\Gallery\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Request;
+use Str;
 
 class Gallery extends Model
 {
@@ -20,9 +21,9 @@ class Gallery extends Model
     {
         if (strlen($value) == 0) {
             $title = Request::input('title');
-            $this->attributes['slug'] = str_slug($title);
+            $this->attributes['slug'] = Str::slug($title);
         } else {
-            $this->attributes['slug'] = str_slug($value);
+            $this->attributes['slug'] = Str::slug($value);
         }
     }
 }
