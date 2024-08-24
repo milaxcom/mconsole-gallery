@@ -1,8 +1,6 @@
-@if (isset($item))
-    {!! Form::model($item, ['method' => 'PUT', 'url' => mconsole_url(sprintf('gallery/%s', $item->id))]) !!}
-@else
-    {!! Form::open(['method' => 'POST', 'url' => mconsole_url('gallery')]) !!}
-@endif
+<form method="POST" action="{{ mconsole_url(isset($item) ? sprintf('gallery/%s', $item->id) : 'gallery') }}" enctype="multipart/form-data">
+    @if (isset($item))@method('PUT')@endif
+    @csrf
 <div class="row">
 	<div class="col-lg-7 col-md-6">
         <div class="portlet light">
@@ -24,14 +22,18 @@
     				@include('mconsole::forms.text', [
     					'label' => trans('mconsole::gallery.form.slug'),
     					'name' => 'slug',
+                        'value' => $item->slug ?? null,
     				])
     				@include('mconsole::forms.text', [
     					'label' => trans('mconsole::gallery.form.title'),
     					'name' => 'title',
+                        'value' => $item->title ?? null,
     				])
     				@include('mconsole::forms.textarea', [
     					'label' => trans('mconsole::gallery.form.description'),
     					'name' => 'description',
+                        'value' => $item->description ?? null,
+                        'size' => '50x5',
     				])
     			</div>
                 <div class="form-actions">
@@ -115,4 +117,4 @@
     </div>
 </div>
 
-{!! Form::close() !!}
+</form>
