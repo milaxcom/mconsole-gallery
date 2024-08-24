@@ -19,6 +19,8 @@ class GalleryController extends Controller
     use \HasRedirects, \DoesNotHaveShow, \UseLayout;
     
     protected $model = 'Milax\Mconsole\Gallery\Models\Gallery';
+
+    protected $form, $list, $repository, $redirectTo;
     
     /**
      * Create new class instance
